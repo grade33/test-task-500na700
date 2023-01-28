@@ -1,0 +1,133 @@
+include ./pug/mixins.pug
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title 500na700
+    link(rel="stylesheet", href="./style.min.css")
+    script(defer src="./app.min.js")
+  body
+    .app
+      header.header
+        .container.header__container
+          a.logo.header__logo(href="#")
+            svg.logo__icon
+              use(xlink:href="@img/sprite.svg#logo")
+          nav.nav.header__nav
+            ul.nav__list
+              each val in [1, 2, 3, 4, 5]
+                li.nav__item
+                  button.nav__btn(type="button")='Пункт ' + val
+                  .nav__more
+                    ul.nav__more-list
+                      - let n = 1
+                      while n <= 5
+                        - n++
+                        li.nav__more-item
+                          a.nav__more-link(href="#") Подпункт меню
+          button.burger(type="button")
+            span.burger__item
+            span.burger__item
+            span.burger__item
+          nav.burger-menu
+            ul.burger-menu__list
+              each val in [1, 2, 3, 4, 5]
+                li.burger-menu__item
+                  button.burger-menu__btn(type="button")='Пункт ' + val
+                  .burger-menu__more
+                    ul.burger-menu__more-list
+                      - let n = 1
+                      while n <= 5
+                        - n++
+                        li.burger-menu__more-item
+                          a.burger-menu__more-link(href="#") Подпункт меню
+
+      main.main
+        section.presentation
+          .container.presentation__container
+            .swiper.presentation__slider
+              ul.swiper-wrapper.presentation__slider-wrapper
+                li.swiper-slide.presentation__slider-slide
+                  img.presentation__preview(src="@img/slides/slide-1.jpg", alt="")
+                  .presentation__text-block
+                    h2.title.presentation__title Слайд 1
+                li.swiper-slide.presentation__slider-slide
+                  img.presentation__preview(src="@img/slides/slide-2.jpg", alt="")
+                  .presentation__text-block
+                    h2.title.presentation__title Слайд 2
+                li.swiper-slide.presentation__slider-slide
+                  img.presentation__preview(src="@img/slides/slide-3.jpg", alt="")
+                  .presentation__text-block
+                    h2.title.presentation__title Слайд 3
+              .presentation__slider-btn-wrap
+                button(type="button").swiper-button-prev.presentation__slider-btn
+                  svg.presentation__slider-btn-icon
+                    use(xlink:href="@img/sprite.svg#arrow-left")
+                button(type="button").swiper-button-next.presentation__slider-btn
+                  svg.presentation__slider-btn-icon
+                    use(xlink:href="@img/sprite.svg#arrow-right")
+        section.faq
+          .container.faq__container
+            h2.title.faq__title FAQ
+            ul.faq__list
+              each title in ['Как добраться до музея?','Есть ли поблизости удобная парковка?','Можно ли воспользоваться аудиогидом?']
+                li.faq__item.acc
+                  button.acc__btn(tabindex="0" role="button")
+                    h3.faq__item-title.acc__head=title
+                  .acc__panel
+                    p.faq__item-desc
+                      span В Национальный музей Республики Татарстан можно добраться общественным транспортом:
+                      span 1) «Станция метро «Кремлевская», а затем по направлению к Кремлю пройдя 5 минут пешком;
+        section.news
+          .container.container__news
+            h2.title.news__title Новости
+            ul.news__list
+              - let n = 1;
+              while n <= 6
+                li.news__item
+                  a.news__item-link(href="#")
+                    img.news__img(src="@img/news/news-"+n+++".jpg", alt="News 1")
+                    h3.news__heading Заголовок
+                    p.news__desc Описание Описание Описание  Описание Описание Описание  Описаниее
+            .swiper.news__slider
+              ul.swiper-wrapper.news__slider-wrapper
+                - let i = 1;
+                while i <= 6
+                  li.swiper-slide.news__slider-slide
+                    .news__item-link
+                      img.news__img(src="@img/news/news-"+i+++".jpg", alt="News 1")
+                      h3.news__heading Заголовок
+                      p.news__desc Описание Описание Описание  Описание Описание Описание  Описаниее
+        section.subscribe
+          .container
+            .subscribe__container
+              h2.title.subscribe__title Подпишись
+              span.subscribe__subtitle Отправляем анонсы новых статей, выпусков и трансляций
+              form.subscribe__form(action="#")
+                .subscribe__field-block
+                  label.visually-hidden(for="email")
+                  input#email.field.subscribe__field(type="email" placeholder="Email")
+                  label.visually-hidden(for="date")
+                  input#date.field.subscribe__field(type="date" value="2022-02-11")
+                  label.visually-hidden(for="tel")
+                  input#tel.field.subscribe__field(data-mask="phone" type="tel" placeholder="Телефон")
+                  label.visually-hidden(for="time")
+                  input#time.field.subscribe__field(type="time" value="15:00")
+                button.btn.subscribe__btn(type="submit") Подписаться
+
+      .footer
+        .container.footer__container
+          .footer__left
+            h2.footer__title Заголовок
+            span.footer__desc Описание Описание Описание  Описание Описание Описание  Описаниее
+            a.footer__link(href="https://500na700.ru/") 500na700.ru
+          ul.footer__social
+            each val in ['vk','facebook','tiktok','youtube']
+              li.footer__social-item
+                a.footer__social-link(href="#")
+                  svg.footer__social-icon
+                    use(xlink:href="@img/sprite.svg#"+val)
+
+
